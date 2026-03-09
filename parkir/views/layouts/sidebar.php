@@ -7,54 +7,54 @@
     
     <div class="sidebar-menu">
         <?php if ($_SESSION['role'] === 'admin'): ?>
-            <a href="dashboard.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
+            <a href="/views/admin/dashboard.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="users.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active' : ''; ?>">
+            <a href="/views/admin/users.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active' : ''; ?>">
                 <i class="fas fa-users"></i>
                 <span>Kelola User</span>
             </a>
-            <a href="tarif.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'tarif.php' ? 'active' : ''; ?>">
+            <a href="/views/admin/tarif.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'tarif.php' ? 'active' : ''; ?>">
                 <i class="fas fa-money-bill"></i>
                 <span>Kelola Tarif</span>
             </a>
-            <a href="area.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'area.php' ? 'active' : ''; ?>">
+            <a href="/views/admin/area.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'area.php' ? 'active' : ''; ?>">
                 <i class="fas fa-map-marked-alt"></i>
                 <span>Kelola Area</span>
             </a>
-            <a href="kendaraan.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'kendaraan.php' ? 'active' : ''; ?>">
+            <a href="/views/admin/kendaraan.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'kendaraan.php' ? 'active' : ''; ?>">
                 <i class="fas fa-car"></i>
                 <span>Jenis Kendaraan</span>
             </a>
-            <a href="log.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'log.php' ? 'active' : ''; ?>">
+            <a href="/views/admin/log.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'log.php' ? 'active' : ''; ?>">
                 <i class="fas fa-history"></i>
                 <span>Log Aktivitas</span>
             </a>
         <?php
 elseif ($_SESSION['role'] === 'petugas'): ?>
-            <a href="dashboard.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
+            <a href="/views/petugas/dashboard.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="masuk.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'masuk.php' ? 'active' : ''; ?>">
+            <a href="/views/petugas/masuk.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'masuk.php' ? 'active' : ''; ?>">
                 <i class="fas fa-sign-in-alt"></i>
                 <span>Kendaraan Masuk</span>
             </a>
-            <a href="keluar.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'keluar.php' ? 'active' : ''; ?>">
+            <a href="/views/petugas/keluar.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'keluar.php' ? 'active' : ''; ?>">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Kendaraan Keluar</span>
             </a>
         <?php
 elseif ($_SESSION['role'] === 'owner'): ?>
-            <a href="dashboard.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
+            <a href="/views/owner/dashboard.php" class="menu-item <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
             </a>
         <?php
 endif; ?>
         
-        <a href="../../logout.php" class="menu-item logout-btn">
+        <a href="/logout.php" class="menu-item logout-btn">
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
         </a>

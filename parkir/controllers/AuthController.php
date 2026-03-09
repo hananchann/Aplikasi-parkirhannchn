@@ -42,13 +42,13 @@ class AuthController
                 // Redirect based on role
                 switch ($user['role']) {
                     case 'admin':
-                        header('Location: views/admin/dashboard.php');
+                        header('Location: /views/admin/dashboard.php');
                         break;
                     case 'petugas':
-                        header('Location: views/petugas/dashboard.php');
+                        header('Location: /views/petugas/dashboard.php');
                         break;
                     case 'owner':
-                        header('Location: views/owner/dashboard.php');
+                        header('Location: /views/owner/dashboard.php');
                         break;
                 }
                 exit();
@@ -68,7 +68,7 @@ class AuthController
             logActivity($this->conn, $_SESSION['user_id'], "Logout dari sistem");
         }
         session_destroy();
-        header('Location: ../../index.php');
+        header('Location: /index.php');
         exit();
     }
 
@@ -78,7 +78,7 @@ class AuthController
     public static function checkAuth()
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: ../../index.php');
+            header('Location: /index.php');
             exit();
         }
     }
@@ -90,7 +90,7 @@ class AuthController
     {
         self::checkAuth();
         if (!in_array($_SESSION['role'], $allowed_roles)) {
-            header('Location: ../../index.php');
+            header('Location: /index.php');
             exit();
         }
     }

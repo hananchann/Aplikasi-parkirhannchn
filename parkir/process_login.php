@@ -13,7 +13,7 @@ $error = $authController->login();
 
 if ($error) {
     $_SESSION['error'] = $error;
-    header('Location: index.php');
+    header('Location: /index.php');
     exit();
 }
 ?>
