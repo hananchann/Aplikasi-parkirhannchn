@@ -5,8 +5,8 @@
  */
 
 session_start();
-require_once 'config/koneksi.php';
-require_once 'controllers/AuthController.php';
+require_once __DIR__ . '/config/koneksi.php';
+require_once __DIR__ . '/controllers/AuthController.php';
 
 $authController = new AuthController($conn);
 $error = $authController->login();

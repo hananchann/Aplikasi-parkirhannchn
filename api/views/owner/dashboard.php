@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../../controllers/AuthController.php';
+require_once __DIR__ . '/../../controllers/AuthController.php';
 AuthController::checkRole(['owner']);
 
-require_once '../../config/koneksi.php';
-require_once '../../models/Transaksi.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../models/Transaksi.php';
 
 $transaksiModel = new Transaksi($conn);
 
@@ -18,8 +18,8 @@ $total_pendapatan = $transaksiModel->getTotalPendapatan($start_date, $end_date);
 $total_transaksi = $transaksiModel->getTotalTransaksi($start_date, $end_date);
 
 $page_title = "Dashboard Owner";
-include '../layouts/header.php';
-include '../layouts/sidebar.php';
+include __DIR__ . '/../layouts/header.php';
+include __DIR__ . '/../layouts/sidebar.php';
 ?>
 
 <div class="container-fluid">
@@ -178,4 +178,4 @@ endif; ?>
 </style>
 
     </div></div>
-<?php include '../layouts/footer.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>

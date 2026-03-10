@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../../controllers/AuthController.php';
+require_once __DIR__ . '/../../controllers/AuthController.php';
 AuthController::checkRole(['petugas']);
 
-require_once '../../config/koneksi.php';
-require_once '../../models/Transaksi.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../models/Transaksi.php';
 
 $transaksiModel = new Transaksi($conn);
 

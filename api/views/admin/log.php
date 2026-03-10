@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../../controllers/AuthController.php';
+require_once __DIR__ . '/../../controllers/AuthController.php';
 AuthController::checkRole(['admin']);
 
-require_once '../../config/koneksi.php';
+require_once __DIR__ . '/../../config/koneksi.php';
 
 // Get log activities with pagination
 $limit = 50;
@@ -28,8 +28,8 @@ $total_result = $total_stmt->get_result()->fetch_assoc();
 $total_pages = ceil($total_result['total'] / $limit);
 
 $page_title = "Log Aktivitas";
-include '../layouts/header.php';
-include '../layouts/sidebar.php';
+include __DIR__ . '/../layouts/header.php';
+include __DIR__ . '/../layouts/sidebar.php';
 ?>
 
 <div class="container-fluid">
@@ -103,4 +103,4 @@ endif; ?>
 </div>
 
     </div></div>
-<?php include '../layouts/footer.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>

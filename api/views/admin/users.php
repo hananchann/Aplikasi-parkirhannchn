@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../../controllers/AuthController.php';
+require_once __DIR__ . '/../../controllers/AuthController.php';
 AuthController::checkRole(['admin']);
 
-require_once '../../config/koneksi.php';
-require_once '../../models/User.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../models/User.php';
 
 $userModel = new User($conn);
 
@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $users = $userModel->getAllUsers();
 
 $page_title = "Kelola User";
-include '../layouts/header.php';
-include '../layouts/sidebar.php';
+include __DIR__ . '/../layouts/header.php';
+include __DIR__ . '/../layouts/sidebar.php';
 ?>
 
 <div class="container-fluid">
@@ -277,4 +277,4 @@ function editUser(user) {
     </div> <!-- Close content-wrapper -->
 </div> <!-- Close main-content -->
 
-<?php include '../layouts/footer.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>

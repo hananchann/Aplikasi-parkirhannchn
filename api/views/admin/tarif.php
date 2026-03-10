@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../../controllers/AuthController.php';
+require_once __DIR__ . '/../../controllers/AuthController.php';
 AuthController::checkRole(['admin']);
 
-require_once '../../config/koneksi.php';
-require_once '../../models/Tarif.php';
+require_once __DIR__ . '/../../config/koneksi.php';
+require_once __DIR__ . '/../../models/Tarif.php';
 
 $tarifModel = new Tarif($conn);
 
@@ -46,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $tarifs = $tarifModel->getAllTarif();
 
 $page_title = "Kelola Tarif";
-include '../layouts/header.php';
-include '../layouts/sidebar.php';
+include __DIR__ . '/../layouts/header.php';
+include __DIR__ . '/../layouts/sidebar.php';
 ?>
 
 <div class="container-fluid">
@@ -182,4 +182,4 @@ function editTarif(tarif) {
 </script>
 
     </div></div>
-<?php include '../layouts/footer.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>
