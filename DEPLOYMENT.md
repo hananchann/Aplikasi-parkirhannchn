@@ -21,11 +21,12 @@ This project is prepared for deployment on Vercel using the official PHP runtime
 1.  Push your code to a GitHub, GitLab, or Bitbucket repository.
 2.  Import the project into Vercel.
 3.  In the **Environment Variables** section, add the following variables:
-    - `DB_HOST`: Your database host (e.g., `mysql-instance.aivencloud.com`)
-    - `DB_USER`: Your database username
+    - `DB_HOST`: Your database host (e.g., `mysql-xxx.aivencloud.com`)
+    - `DB_USER`: Your database username (e.g., `avnadmin`)
     - `DB_PASS`: Your database password
-    - `DB_NAME`: Your database name
-    - `DB_PORT`: `3306` (Optional, if your host uses a different port)
+    - `DB_NAME`: `defaultdb` (or your specific database name)
+    - `DB_PORT`: Set this to your Aiven port (e.g., `24176`). **IMPORTANT**: Aiven does not use the default `3306`.
+    - `DB_SSL`: `true` (Aiven and most cloud providers require SSL)
 
 ## Step 3: Deployment
 

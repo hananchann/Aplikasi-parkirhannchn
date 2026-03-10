@@ -2,20 +2,68 @@
 /**
  * Database Connection Configuration
  * Sistem Informasi Parkir
+ * Updated for Vercel and Cloud Databases (SSL/Port support)
  */
 
-// Database credentials - Use environment variables if available (for Vercel), otherwise fallback to local
-define('DB_HOST', getenv('DB_HOST') ?: (defined('LOCAL_DB_HOST') ? LOCAL_DB_HOST : 'localhost'));
-define('DB_USER', getenv('DB_USER') ?: (defined('LOCAL_DB_USER') ? LOCAL_DB_USER : 'root'));
-define('DB_PASS', getenv('DB_PASS') ?: (defined('LOCAL_DB_PASS') ? LOCAL_DB_PASS : ''));
-define('DB_NAME', getenv('DB_NAME') ?: (defined('LOCAL_DB_NAME') ? LOCAL_DB_NAME : 'db_parkir'));
+// Helper to get environment variable with fallback
+function get_db_env($name, $default = '')
+{
+    return getenv($name) ?: ($_ENV[$name] ?? $default);
+}
 
-// Create connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+// Database credentials
+$db_host_full = get_db_env('DB_HOST', 'localhost');
+$db_port = get_db_env('DB_PORT', '3306');
 
-// Check connection
-if ($conn->connect_error) {
-    die("Koneksi database gagal: " . $conn->connect_error);
+// Parse port from host if host is in host:port format
+if (strpos($db_host_full, ':') !== false) {
+    list($db_host, $extracted_port) = explode(':', $db_host_full);
+    $db_port = $extracted_port;
+}
+else {
+    $db_host = $db_host_full;
+}
+
+$db_user = get_db_env('DB_USER', 'root');
+$db_pass = get_db_env('DB_PASS', '');
+$db_name = get_db_env('DB_NAME', 'db_parkir');
+$db_ssl = get_db_env('DB_SSL', 'false');
+
+// Create connection using mysqli_init for SSL support
+$conn = mysqli_init();
+
+if (!$conn) {
+    die("mysqli_init failed");
+}
+
+// Set SSL if requested
+if (strtolower($db_ssl) === 'true') {
+    // MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT is often needed for cloud providers
+    // unless you provide a specific CA certificate.
+    mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
+    $flags = MYSQLI_CLIENT_SSL;
+}
+else {
+    $flags = 0;
+}
+
+// Connect to database
+$connected = mysqli_real_connect(
+    $conn,
+    $db_host,
+    $db_user,
+    $db_pass,
+    $db_name,
+    $db_port,
+    NULL,
+    $flags
+);
+
+if (!$connected) {
+    $error = mysqli_connect_error();
+    $errno = mysqli_connect_errno();
+    $ssl_msg = (strtolower($db_ssl) === 'true') ? " (SSL Enabled)" : " (SSL Disabled)";
+    die("Koneksi database gagal: $error (Code: $errno)$ssl_msg. Pastikan Host, Port, dan SSL di Vercel sudah sesuai dengan dashboard Aiven/Cloud DB Anda. Host: $db_host, Port: $db_port");
 }
 
 // Set charset to UTF-8

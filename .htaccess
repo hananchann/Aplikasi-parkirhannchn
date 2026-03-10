@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# If the file or directory exists at the current location (like assets), serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Otherwise, rewrite all traffic to the api/ directory
+# This matches Vercel's behavior of routing non-assets to the serverless api
+RewriteRule ^(.*)$ api/$1 [L,QSA]
